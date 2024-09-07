@@ -42,7 +42,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * It's a very helpful Repository
  *
  */
-// #undef __cplusplus
 #ifdef __cplusplus
 // Do not recommend
 // use STL Library instead of this

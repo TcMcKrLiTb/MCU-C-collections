@@ -27,57 +27,36 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 */
 
-#include <string.h>
-#include <stdlib.h>
+#ifndef __CIRCULARQUEUE_H__
+#define __CIRCULARQUEUE_H__
 
-#include "CircularQueue.h"
+/**
+ * @file CircularQueue.h
+ * 
+ * @brief a FIFO structure that store values in a array.
+ * New values can only added from back.
+ * 
+ */
 
-typedef struct _CQueueEntry CQueueEntry;
-
-const void *CQUEUE_NULL = 0;
-
-struct _CQueue
+#ifdef __cplusplus
+// Do not recommend
+// please use STL Library in C++ instead of this
+extern "C"
 {
-    CQueueValue *databuf;
-    unsigned int front;
-    unsigned int rear;
-    size_t type_size;
-};
+#endif
 
-/// @brief Initialize a new circular queue
-/// @param type_size size of the type
-/// @param size size of queue buf
-/// @return new queue
-CQueue *Cqueue_init(size_t type_size, int size)
-{
-    CQueue *queue;
-    queue = (CQueue *)malloc(sizeof(CQueue));
+typedef struct _CQueue CQueue;
+typedef void *CQueueValue;
 
-    if (queue == NULL)
-    {
-        return NULL;
-    }
-    queue->front = 0;
-    queue->rear = 0;
-    queue->databuf = (CQueueValue *)malloc(type_size * size);
-    queue->type_size = type_size;
-    return queue;
+CQueue *Cqueue_init(size_t type_size, int size);
+void Cqueue_free(CQueue *queue);
+int Cqueue_push(CQueue *queue, CQueueValue data);
+CQueueValue Cqueue_pop(CQueue *queue);
+CQueueValue Cqueue_front(CQueue *queue);
+int Cqueue_is_empty(CQueue *queue);
+
+#ifdef __cplusplus
 }
+#endif
 
-/// @brief Release the space cost by a linked queue
-/// @param queue
-void Cqueue_free(CQueue *queue)
-{
-    free(queue->databuf);
-}
-
-/// @brief Add a new data from the tail of the queue
-/// @param queue
-/// @param data
-/// @return
-int Cqueue_push_back(CQueue *queue, CQueueValue data)
-{
-    memcpy((char *)queue->databuf + queue->rear * queue->type_size,
-           data, queue->type_size);
-    
-}
+#endif
