@@ -48,12 +48,13 @@ extern "C"
 typedef struct _CQueue CQueue;
 typedef void *CQueueValue;
 
-CQueue *Cqueue_init(size_t type_size, int size);
+CQueue *Cqueue_init(size_t type_size, unsigned int size);
 void Cqueue_free(CQueue *queue);
 int Cqueue_push(CQueue *queue, CQueueValue data);
 CQueueValue Cqueue_pop(CQueue *queue);
 CQueueValue Cqueue_front(CQueue *queue);
 int Cqueue_is_empty(CQueue *queue);
+int Cqueue_size(CQueue *queue);
 
 #ifdef __cplusplus
 }
