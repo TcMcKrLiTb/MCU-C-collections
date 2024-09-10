@@ -3,7 +3,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-MVector *Mvector_init(size_t type_size, char *initopt, ...);
+MVector *Mvector_init(size_t type_size, char *initopt, ...)
+{
+    ;
+}
+
 void Mvector_free(MVector *vector);
 int Mvector_push_back(MVector *vector, MVectorValue data);
 MVectorValue Mvector_front(MVector *vector);
