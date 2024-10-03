@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "string.h": "c",
-        "circularqueue.h": "c"
+        "circularqueue.h": "c",
+        "oledfont.h": "c",
+        "oled.h": "c"
     }
 }
